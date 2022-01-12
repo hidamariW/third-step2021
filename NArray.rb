@@ -15,7 +15,7 @@ score2.each do |j|
 end
 
 puts "でした。"
-puts "理科と英語のそれぞれについて、平均点、標準偏差値、合計点を求めよ。"
+puts "理科と英語のそれぞれについて、平均点、標準偏差、合計点を求めよ。"
 puts "それぞれの人について、理科と英語の偏差値を求めよ。"
 puts "さらに、理科と英語のそれぞれについて点数の高い順に並べ替えなさい。"
 
@@ -25,20 +25,20 @@ p ave1 = score1.mean
 print "英語:"
 p ave2 = score2.mean
 
-puts "\n標準偏差値"
+puts "\n標準偏差"
 print "理科:"
-s=0
+dev1 = 0
 score1.each do |i| 
-  s = s +(i - ave1) * (i - ave1)
+  dev1 = dev1 +(i - ave1) * (i - ave1)
 end
-p Math.sqrt(s / score1.total)
+p Math.sqrt(dev1 / score1.total)
 
 print "英語:"
-e = 0
+dev2 = 0
 score2.each do |j|
-  e = e + (j - ave2) * (j - ave2)
+  dev2 = dev2 + (j - ave2) * (j - ave2)
 end
-p Math.sqrt(e / score2.total)
+p Math.sqrt(dev2 / score2.total)
 
 puts "\n合計点"
 print "理科:"
@@ -57,15 +57,25 @@ p sum2
 
 puts "\nソート"
 print "理科:"
-score1.sort.each do |i|
+score1.sort.reverse.each do |i|
   print "#{i} "
 end
 
 print "\n英語:"
-score2.sort.each do |j|
+score2.sort.reverse.each do |j|
   print "#{j} "
-end 
+end
 
+puts "\n\n偏差値"
+print "理科"
+score1.sort.reverse.each do |i|
+  print "#{(10 * ((i - ave1) / dev1) + 50).round(2)} "
+end
+
+print "\n英語"
+score2.sort.reverse.each do |j|
+  print "#{(10 * ((j - ave2) / dev2) + 50).round(2)} "
+end
 
 
 
